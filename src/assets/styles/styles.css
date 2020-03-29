@@ -93,9 +93,6 @@
  */
 
  @import "layouts/_flow";
- @import "layouts/_testimonials";
- @import "layouts/_header";
- @import "layouts/_section";
 
 /**
  * Components. (namespace: c-)
@@ -107,7 +104,7 @@
  */
 
 @import "components/_buttons";
-@import "components/_react-component-style";
+@import "components/_todolist";
 
 /**
  * Patterns. (namespace: p-)

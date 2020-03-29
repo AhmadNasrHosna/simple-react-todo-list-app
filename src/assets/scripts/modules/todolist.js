@@ -1,17 +1,45 @@
 import React, { Component } from "react";
+import TodoItems from "./todoitems";
+import { DateTime } from "luxon";
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
 
+    let sortedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+
     this.state = {
-      tooListItems: []
+      todoListItems: sortedTodos
     };
 
-    this.addItem = this.addItem.bind(this);
+    this.addTodoItem = this.addTodoItem.bind(this);
+    this.deleteTodoItem = this.deleteTodoItem.bind(this);
+    this.handleEmptyListMessage = this.handleEmptyListMessage.bind(this);
   }
 
-  addItem(e) {
+  componentDidMount() {
+    this._inputElement.focus();
+    this.handleEmptyListMessage();
+  }
+
+  componentDidUpdate() {
+    this.handleEmptyListMessage();
+  }
+
+  handleEmptyListMessage() {
+    // If our Todo list is empty:
+    if (this.state.todoListItems.length == 0) {
+      // show message
+      if (this._emptyListMessage.classList.contains("is-hidden")) {
+        this._emptyListMessage.classList.remove("is-hidden");
+      }
+    } else {
+      // hide the message
+      this._emptyListMessage.classList.add("is-hidden");
+    }
+  }
+
+  addTodoItem(e) {
     e.preventDefault();
 
     const input = this._inputElement;
@@ -23,35 +51,77 @@ class TodoList extends Component {
       key: Date.now()
     };
 
-    this.setState(({ tooListItems }) => ({
-      tooListItems: tooListItems.concat(newToDoItem)
+    const updatedTodoList = this.state.todoListItems.concat(newToDoItem);
+
+    this.setState(() => ({
+      todoListItems: updatedTodoList
     }));
+
+    localStorage.setItem("todos", JSON.stringify(updatedTodoList));
 
     input.value = "";
     input.focus();
 
-    console.log(this.state.tooListItems);
+    console.log(this.state.todoListItems);
   }
 
-  componentDidMount() {
-    this._inputElement.focus();
+  deleteTodoItem(key) {
+    const filteredTodoItems = this.state.todoListItems.filter((item) => {
+      return item.key != key;
+    });
+
+    this.setState({
+      todoListItems: filteredTodoItems
+    });
+
+    localStorage.setItem("todos", JSON.stringify(filteredTodoItems));
   }
 
   render() {
+    // array does not exist, is not an array, or is empty
+
     return (
-      <div className="todoListMain">
-        <div className="header">
-          <form onSubmit={this.addItem}>
+      <div className="c-todolist">
+        <header className="c-todolist__header u-align-center">
+          <div className="c-todolist__time">
+            <time>{DateTime.fromJSDate(new Date()).toFormat("DDDD")}</time>
+          </div>
+          <img src="../../assets/images/illustration.jpg" alt="Todo List" />
+          <h1 className="c-todolist__title">To do List</h1>
+        </header>
+        <div className="c-todolist__messages u-align-center">
+          <p
+            class="c-todolist__message"
+            ref={(el) => (this._emptyListMessage = el)}
+          >
+            You haven&apos;t created any tasks yet!
+          </p>
+        </div>
+        <div className="c-todolist__items">
+          <TodoItems
+            entries={this.state.todoListItems}
+            delete={this.deleteTodoItem}
+          />
+        </div>
+        <footer className="c-todolist__footer">
+          <form onSubmit={this.addTodoItem}>
             <input
               ref={(el) => (this._inputElement = el)}
-              placeholder="Enter task"
+              type="text"
+              placeholder="add task ..."
+              className="u-align-center"
             ></input>
-            <button type="submit">add</button>
+            <button type="submit" className="c-todolist__add">
+              <span className="u-sr-only">Add new task</span>
+            </button>
           </form>
-        </div>
+        </footer>
       </div>
     );
   }
 }
 
 export default TodoList;
+
+// I learnt how to check if an JS array is empty or does not exist from here:
+// https://stackoverflow.com/questions/24403732/check-if-array-is-empty-or-does-not-exist-js

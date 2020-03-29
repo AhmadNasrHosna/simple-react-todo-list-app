@@ -30,6 +30,9 @@ body {
   -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
+  -webkit-font-kerning: normal;
+  font-kerning: normal;
+  font-feature-settings: "kern","liga","clig","calt";
   min-height: 100vh;  /* [2] */
 }
 

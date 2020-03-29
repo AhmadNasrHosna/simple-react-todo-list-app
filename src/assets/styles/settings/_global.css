@@ -35,7 +35,7 @@
   --color-brand-accent : hsl(222, 82%, 57%);
 
   // Text colors
-  --color-text-global  : #343434;
+  --color-text-global  : hsl(208, 11%, 27%);
 
   // Backgrounds colors
   --color-background-light: #fff;
@@ -118,8 +118,8 @@
                                       * To make PostCSS stop providing fallback to custom properties. It provide the compiled code with fallback to the first custom property outside scope of the @media rule for all breakpoints!, and then we get the fixed values using $ SASS Variables as fallback for older browser. */
 
     // Font-family
-  --font-family-plain  : "Inter", system-ui;
-  --font-family-special: "bluu_nextbold_italic", serif;
+  --font-family-plain  : 'Didact Gothic', sans-serif;
+  --font-family-special: 'Josefin Sans', sans-serif;
   --font-family-mono   : "Consolas", "Lucida Console", Menlo, Monaco, monospace;
 
   // Line-height
