@@ -36,17 +36,13 @@ class TodoItems extends Component {
   }
 
   storeCheckedTodoItem(item) {
-    this.props.storeItem(item);
+    this.props.storeCheckedItem(item);
   }
 
   render() {
     const todoEntries = this.props.entries;
     const listItems = todoEntries.map(this.creatTodoItems);
-    return (
-      <div>
-        <ul className="o-list-bare">{listItems}</ul>
-      </div>
-    );
+    return <ul className="o-list-bare">{listItems}</ul>;
   }
 }
 

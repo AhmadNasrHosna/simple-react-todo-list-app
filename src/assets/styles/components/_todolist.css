@@ -75,6 +75,7 @@
 
   &__items {
     margin: 2rem 0 1rem;
+    position: relative;
 
     ul {
       max-width: 80%;
@@ -83,6 +84,19 @@
       margin-right: auto;
       overflow-y: auto;
     }
+  }
+
+  &__count {
+    font-size: 15rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.045;
+    color: var(--color-primary-600);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   &__delete {
@@ -193,4 +207,3 @@
     padding-bottom: 7.35rem;
   }
 }
-

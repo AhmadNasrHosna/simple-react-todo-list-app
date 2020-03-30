@@ -12,6 +12,8 @@
     align-items: center;
     width: 100%;
     transition: all 150ms ease;
+    user-select: none;
+    -webkit-user-drag: none;
 
     &::before,
     &::after {
@@ -77,7 +79,6 @@
       background: hsla(206, 13%, 94%, 1);
 
       &:before {
-        background-color: hsl(calc(var(--color-primary-h) - 35), 60%, 94%);
         box-shadow: 0 0 0 4px hsl(calc(var(--color-primary-h) - 35), 60%, 94%);
       }
     }
@@ -91,9 +92,5 @@
 .c-checkbox:hover input[type="checkbox"] {
   &:checked + label::after {
     border-color: var(--color-primary);
-  }
-
-  &:focus + label:before {
-    background-color: #fff;
   }
 }

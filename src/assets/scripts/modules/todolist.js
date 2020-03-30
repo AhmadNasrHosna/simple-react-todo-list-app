@@ -90,7 +90,10 @@ class TodoList extends Component {
   }
 
   render() {
-    // array does not exist, is not an array, or is empty
+    // Checked todos count
+    this.checkTodosCount = this.state.todoListItems.filter((todo) => {
+      return todo.isChecked == false;
+    }).length;
 
     return (
       <div className="c-todolist">
@@ -110,10 +113,13 @@ class TodoList extends Component {
           </p>
         </div>
         <div className="c-todolist__items">
+          <p className="c-todolist__count">
+            {this.checkTodosCount > 0 ? this.checkTodosCount : ""}
+          </p>
           <TodoItems
             entries={this.state.todoListItems}
             deleteItem={this.deleteTodoItem}
-            storeItem={this.storeCheckedTodoItem}
+            storeCheckedItem={this.storeCheckedTodoItem}
           />
         </div>
         <footer className="c-todolist__footer">
