@@ -92,8 +92,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0.045;
-    color: var(--color-primary-600);
+    color:  hsl(calc(var(--color-primary-h) - 35), var(--color-primary-s), 97%);
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;

@@ -113,9 +113,9 @@ class TodoList extends Component {
           </p>
         </div>
         <div className="c-todolist__items">
-          <p className="c-todolist__count">
+          <span className="c-todolist__count">
             {this.checkTodosCount > 0 ? this.checkTodosCount : ""}
-          </p>
+          </span>
           <TodoItems
             entries={this.state.todoListItems}
             deleteItem={this.deleteTodoItem}
