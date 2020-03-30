@@ -6,14 +6,22 @@ class TodoItems extends Component {
 
     this.creatTodoItems = this.creatTodoItems.bind(this);
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
+    this.storeCheckedTodoItem = this.storeCheckedTodoItem.bind(this);
   }
 
-  creatTodoItems(item) {
+  creatTodoItems(item, i) {
     return (
-      <li className="c-todolist__item" key={item.key}>
-        {item.text}
+      <li className="c-todolist__item c-checkbox" key={item.key}>
+        <input
+          type="checkbox"
+          id={"item-" + i}
+          onChange={() => this.storeCheckedTodoItem(item)}
+          ref={(el) => (this._checkboxInput = el)}
+          checked={item.isChecked ? true : false}
+        />
+        <label htmlFor={"item-" + i}>{item.text}</label>
         <button
-          class="c-todolist__delete"
+          className="c-todolist__delete"
           onClick={() => this.deleteTodoItem(item.key)}
         >
           <span className="c-todolist__delete__icon"></span>
@@ -24,13 +32,21 @@ class TodoItems extends Component {
   }
 
   deleteTodoItem(key) {
-    this.props.delete(key);
+    this.props.deleteItem(key);
+  }
+
+  storeCheckedTodoItem(item) {
+    this.props.storeItem(item);
   }
 
   render() {
     const todoEntries = this.props.entries;
     const listItems = todoEntries.map(this.creatTodoItems);
-    return <ul className="o-list-bare">{listItems}</ul>;
+    return (
+      <div>
+        <ul className="o-list-bare">{listItems}</ul>
+      </div>
+    );
   }
 }
 

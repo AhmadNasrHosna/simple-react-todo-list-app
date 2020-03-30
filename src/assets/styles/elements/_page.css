@@ -34,6 +34,7 @@ body {
   font-kerning: normal;
   font-feature-settings: "kern","liga","clig","calt";
   min-height: 100vh;  /* [2] */
+  overflow-y: scroll;
 }
 
 

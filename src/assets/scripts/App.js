@@ -3,6 +3,7 @@ if (module.hot) {
 }
 
 import "../styles/styles.css";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import TodoList from "./modules/todolist";

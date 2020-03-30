@@ -6,14 +6,15 @@ class TodoList extends Component {
   constructor(props) {
     super(props);
 
-    let sortedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+    let storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
     this.state = {
-      todoListItems: sortedTodos
+      todoListItems: storedTodos
     };
 
     this.addTodoItem = this.addTodoItem.bind(this);
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
+    this.storeCheckedTodoItem = this.storeCheckedTodoItem.bind(this);
     this.handleEmptyListMessage = this.handleEmptyListMessage.bind(this);
   }
 
@@ -44,11 +45,12 @@ class TodoList extends Component {
 
     const input = this._inputElement;
 
-    if (input.value == "") return;
+    if (input.value == "") return; // Stop adding empty values
 
     let newToDoItem = {
       text: input.value,
-      key: Date.now()
+      key: Date.now(),
+      isChecked: false
     };
 
     const updatedTodoList = this.state.todoListItems.concat(newToDoItem);
@@ -77,6 +79,16 @@ class TodoList extends Component {
     localStorage.setItem("todos", JSON.stringify(filteredTodoItems));
   }
 
+  storeCheckedTodoItem(item) {
+    item.isChecked = !item.isChecked;
+
+    this.setState({
+      todoListItems: this.state.todoListItems
+    });
+
+    localStorage.setItem("todos", JSON.stringify(this.state.todoListItems));
+  }
+
   render() {
     // array does not exist, is not an array, or is empty
 
@@ -91,7 +103,7 @@ class TodoList extends Component {
         </header>
         <div className="c-todolist__messages u-align-center">
           <p
-            class="c-todolist__message"
+            className="c-todolist__message"
             ref={(el) => (this._emptyListMessage = el)}
           >
             You haven&apos;t created any tasks yet!
@@ -100,7 +112,8 @@ class TodoList extends Component {
         <div className="c-todolist__items">
           <TodoItems
             entries={this.state.todoListItems}
-            delete={this.deleteTodoItem}
+            deleteItem={this.deleteTodoItem}
+            storeItem={this.storeCheckedTodoItem}
           />
         </div>
         <footer className="c-todolist__footer">

@@ -105,6 +105,7 @@
 
 @import "components/_buttons";
 @import "components/_todolist";
+@import "components/_checkbox";
 
 /**
  * Patterns. (namespace: p-)
