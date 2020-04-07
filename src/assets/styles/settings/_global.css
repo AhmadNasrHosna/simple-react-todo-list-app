@@ -118,7 +118,7 @@
                                       * To make PostCSS stop providing fallback to custom properties. It provide the compiled code with fallback to the first custom property outside scope of the @media rule for all breakpoints!, and then we get the fixed values using $ SASS Variables as fallback for older browser. */
 
     // Font-family
-  --font-family-plain  : 'Didact Gothic', sans-serif;
+  --font-family-plain  : 'DM sans', sans-serif;
   --font-family-special: 'Josefin Sans', sans-serif;
   --font-family-mono   : "Consolas", "Lucida Console", Menlo, Monaco, monospace;
 

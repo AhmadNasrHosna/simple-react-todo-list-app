@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
 
 class TodoItems extends Component {
   constructor(props) {
@@ -42,7 +44,12 @@ class TodoItems extends Component {
   render() {
     const todoEntries = this.props.entries;
     const listItems = todoEntries.map(this.creatTodoItems);
-    return <ul className="o-list-bare">{listItems}</ul>;
+
+    return (
+      <ul className="o-list-bare">
+        <SimpleBar style={{ maxHeight: 239 }}>{listItems}</SimpleBar>
+      </ul>
+    );
   }
 }
 
