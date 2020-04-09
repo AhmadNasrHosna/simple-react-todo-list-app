@@ -58,15 +58,24 @@
       margin-top: 1rem;
       user-select: none;
       -webkit-user-drag: none;
+      display: none;
+
+      @mixin bp md {
+        display: initial;
+      }
     }
   }
 
   &__title {
     background: #fafafa;
-    padding-top: 8px;
     position: relative;
-    margin: -14px 0 1em;
+    margin: 1em 0;
     font-size: 3rem;
+
+    @mixin bp md {
+      padding-top: 8px;
+      margin: -14px 0 1em;
+    }
   }
 
   &__time {
@@ -92,6 +101,10 @@
       margin-left: auto;
       margin-right: auto;
       overflow-y: auto;
+
+      @mixin bp md {
+        max-width: 95%;
+      }
     }
 
     & .simplebar-content {
