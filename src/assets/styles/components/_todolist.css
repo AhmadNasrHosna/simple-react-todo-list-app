@@ -27,12 +27,12 @@
   background-attachment: fixed;
 
   font-family: var(--font-family-special);
-  padding: 2rem 2rem 8rem;
+  padding: 1rem 1rem 8rem;
+  height: 100vh;
 
   @mixin bp md {
     display: grid;
     place-content: center;
-    height: 100vh;
   }
 }
 
