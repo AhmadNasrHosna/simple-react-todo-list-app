@@ -25,7 +25,8 @@
         "lodash": "^4.17.15",
         "normalize.css": "^8.0.1",
         "react": "^16.13.0",
-        "react-dom": "^16.13.0"
+        "react-dom": "^16.13.0",
+        "react-flip-move": "^3.0.4"
     },
     "devDependencies": {
         "@babel/core": "^7.8.7",

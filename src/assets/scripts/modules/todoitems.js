@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
+import FlipMove from "react-flip-move";
 
 class TodoItems extends Component {
   constructor(props) {
@@ -47,7 +48,9 @@ class TodoItems extends Component {
 
     return (
       <ul className="o-list-bare">
-        <SimpleBar style={{ maxHeight: 239 }}>{listItems}</SimpleBar>
+        <SimpleBar style={{ maxHeight: 239 }} forceVisible="y" autoHide={false}>
+          {listItems}
+        </SimpleBar>
       </ul>
     );
   }

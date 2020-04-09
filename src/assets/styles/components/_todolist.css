@@ -24,10 +24,16 @@
     var(--color-primary),
     var(--color-secondary)
   );
-  display: grid;
-  place-content: center;
-  height: 100vh;
+  background-attachment: fixed;
+
   font-family: var(--font-family-special);
+  padding: 2rem 2rem 8rem;
+
+  @mixin bp md {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+  }
 }
 
 // React component style:
@@ -36,7 +42,10 @@
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 13px 30px hsla(0, 0%, 0%, 0.185);
-  width: 540px;
+
+  @mixin bp md {
+    width: 540px;
+  }
 
   &__header {
     background: #fafafa;
@@ -84,6 +93,32 @@
       margin-right: auto;
       overflow-y: auto;
     }
+
+    & .simplebar-content {
+      padding-right: 14px !important;
+    }
+
+    & .simplebar-track.simplebar-vertical {
+      width: 10px;
+
+      & .simplebar-scrollbar {
+        &:before {
+          background: linear-gradient(
+            180deg,
+            var(--color-primary),
+            var(--color-secondary)
+          );
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+        }
+
+        & .simplebar-visible:before {
+          opacity: 1;
+        }
+      }
+    }
   }
 
   &__count {
@@ -92,7 +127,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color:  hsl(calc(var(--color-primary-h) - 35), var(--color-primary-s), 97%);
+    color: hsl(calc(var(--color-primary-h) - 35), var(--color-primary-s), 97%);
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
